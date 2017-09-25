@@ -1,0 +1,16 @@
+﻿  stdafx.cpp
+  dllmain.cpp
+  MatcherW.cpp
+MatcherW.cpp(178): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(179): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(180): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(181): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  OpenCV3_3DLL.cpp
+OpenCV3_3DLL.cpp(237): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+  Subject.cpp
+     Creating library C:\Users\Miguel\Documents\Git\OpenCV3_3DLL\x64\Release\OpenCV3_3DLL.lib and object C:\Users\Miguel\Documents\Git\OpenCV3_3DLL\x64\Release\OpenCV3_3DLL.exp
+  Generating code
+  All 642 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  OpenCV3_3DLL.vcxproj -> C:\Users\Miguel\Documents\Git\OpenCV3_3DLL\x64\Release\OpenCV3_3DLL.dll
+  OpenCV3_3DLL.vcxproj -> C:\Users\Miguel\Documents\Git\OpenCV3_3DLL\x64\Release\OpenCV3_3DLL.pdb (Full PDB)
