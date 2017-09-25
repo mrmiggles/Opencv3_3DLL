@@ -1,9 +1,15 @@
-﻿  OpenCV3_3DLL.cpp
-     Creating library C:\Users\Miguel\Documents\Git\OpenCV3_3DLL\Release\OpenCV3_3DLL.lib and object C:\Users\Miguel\Documents\Git\OpenCV3_3DLL\Release\OpenCV3_3DLL.exp
+﻿  stdafx.cpp
+  dllmain.cpp
+  MatcherW.cpp
+MatcherW.cpp(178): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(179): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(180): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(181): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  OpenCV3_3DLL.cpp
+  Subject.cpp
+     Creating library C:\Users\299490\Documents\Git\Opencv3_3DLL\Release\OpenCV3_3DLL.lib and object C:\Users\299490\Documents\Git\Opencv3_3DLL\Release\OpenCV3_3DLL.exp
   Generating code
-  67 of 601 functions (11.1%) were compiled, the rest were copied from previous compilation.
-    32 functions were new in current compilation
-    31 functions had inline decision re-evaluated but remain unchanged
+  All 635 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  OpenCV3_3DLL.vcxproj -> C:\Users\Miguel\Documents\Git\OpenCV3_3DLL\Release\OpenCV3_3DLL.dll
-  OpenCV3_3DLL.vcxproj -> C:\Users\Miguel\Documents\Git\OpenCV3_3DLL\Release\OpenCV3_3DLL.pdb (Full PDB)
+  OpenCV3_3DLL.vcxproj -> C:\Users\299490\Documents\Git\Opencv3_3DLL\Release\OpenCV3_3DLL.dll
+  OpenCV3_3DLL.vcxproj -> C:\Users\299490\Documents\Git\Opencv3_3DLL\Release\OpenCV3_3DLL.pdb (Full PDB)

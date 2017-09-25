@@ -30,6 +30,7 @@ using namespace cv;
 
 extern "C"
 {
+	DECLDIR void enableCoutToFile();
 	DECLDIR bool setSubjectImage(void *buf, int h1, int w1);
 	DECLDIR bool checkSubject();
 	DECLDIR bool setDetector(int type);
@@ -38,4 +39,5 @@ extern "C"
 	void checkDetector();
 	void checkMatcher();
 	int saveMat(const string& filename, const Mat& M);
+	void saveMatToYML(const string& filename, const Mat& M);
 }
