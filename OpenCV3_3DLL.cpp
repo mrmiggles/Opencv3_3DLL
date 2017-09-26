@@ -10,13 +10,6 @@ extern "C" {
 	Subject s; //Image subject class
 	MatcherW matcher; //Opencv Matcher Wrapper class just to hide a few functions
 
-	DECLDIR void enableCoutToFile() {
-		
-		ofstream outfile("C:\\output\\new.txt", ios::out | std::ofstream::binary);
-		std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
-		std::cout.rdbuf(outfile.rdbuf()); //redirect std::cout to new.txt!
-	}
-
 	DECLDIR bool setSubjectImage(void *buf, int h1, int w1) {
 		if (!buf) {
 			cout << "Initial Buffers were null" << endl;
@@ -66,12 +59,15 @@ extern "C" {
 		return true;
 	}
 
-	DECLDIR unsigned char* getSubjectDescriptors() {
-		unsigned char* dData = s.getDescriptors().data;
-
-		//return s.getDescriptors();
-		return dData;
+	/*
+		
+	*/
+	DECLDIR char* getSubjectDescriptors() {
+		
+		return s.getDescriptorsAsText();
 	}
+
+
 
 	DECLDIR void printDesc() {
 		//cout << "saving file: qazwsxedc.bin" << endl;
@@ -80,39 +76,25 @@ extern "C" {
 		//cout << "saving to: mat.xml" << endl;
 		//saveMatToYML("mat.xml", s.getDescriptors());
 
-		char *mat = (char*)malloc( sizeof(char *) * (s.getDescriptors().rows * s.getDescriptors().cols));
 		//ofstream outfile("C:\\output\\new.txt", ios::out | std::ofstream::binary);
 		//std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
-		//std::cout.rdbuf(outfile.rdbuf()); //redirect std::cout to new.txt!		
+		//std::cout.rdbuf(outfile.rdbuf()); //redirect std::cout to new.txt!	
+
+		String text = "";
+		String com = "[";
 		
 		Mat m = s.getDescriptors();
 		for (int i = 0; i < m.rows; i++) {
-			for (int j = 0; j<m.cols; j++)
-			{
-				char buff1[50];
-				sprintf_s(buff1, "%f", m.at<float>(i, j));
-				const char *com = ",";
-				char *tmp = (char*)malloc(sizeof(char *) * sizeof(buff1) * sizeof(com));
-				cout << buff1 << "\n";
-				strcat_s(tmp, sizeof(buff1), buff1);
-				//strcat_s(tmp, sizeof(com), com);
-				cout << tmp << "\n";
-				//strcat_s(mat, sizeof(tmp), tmp);
-				//cout << to_string(m.at<float>(i, j)).c_str() << endl;
-				//text += std::to_string(m.at<double>(i, j));
-				
+			for (int j = 0; j<m.cols; j++) {
+				text += com + to_string(m.at<float>(i, j));
+				com = ",";
 			}
 		}
-		
-		//cout << mat << endl;
+
+		text += "]";
+		cout << text.c_str() << endl;
 	}
 
-
-	/* test function to return a simple string */
-	DECLDIR char* getString() {
-		char* str = "hello";
-		return str;
-	}
 
 	DECLDIR void printSubjectDescriptors() {
 

@@ -11,14 +11,20 @@ public:
 	Mat subjectImage;
 	vector<cv::KeyPoint> keypointsA;
 	Mat descriptorsA;
+	char *descAsChar;
 
 	void setImage(Mat sI);
 	Mat getImage();
+
 	void setKeypoints(vector<cv::KeyPoint> kp);
 	vector<cv::KeyPoint> getKeypoints();
 	void checkSubjectKeypoints();
+
 	void setDescriptors(Mat ds);
 	Mat getDescriptors();
+	char *getDescriptorsAsText();
+	void clearDescAsChar();
+	
 	void cleanUp();
 	Subject();
 	~Subject();
