@@ -6,11 +6,12 @@ MatcherW.cpp(179): warning C4244: 'argument': conversion from 'int' to 'float', 
 MatcherW.cpp(180): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 MatcherW.cpp(181): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   OpenCV3_3DLL.cpp
-OpenCV3_3DLL.cpp(240): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+OpenCV3_3DLL.cpp(222): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
   Subject.cpp
+Subject.cpp(58): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
      Creating library C:\Users\Miguel\Documents\Git\Opencv3_3DLL\x64\Release\OpenCV3_3DLL.lib and object C:\Users\Miguel\Documents\Git\Opencv3_3DLL\x64\Release\OpenCV3_3DLL.exp
   Generating code
-  All 685 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
+  All 681 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   OpenCV3_3DLL.vcxproj -> C:\Users\Miguel\Documents\Git\Opencv3_3DLL\x64\Release\OpenCV3_3DLL.dll
   OpenCV3_3DLL.vcxproj -> C:\Users\Miguel\Documents\Git\Opencv3_3DLL\x64\Release\OpenCV3_3DLL.pdb (Full PDB)

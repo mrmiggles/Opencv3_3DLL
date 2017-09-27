@@ -12,6 +12,7 @@ public:
 	vector<cv::KeyPoint> keypointsA;
 	Mat descriptorsA;
 	char *descAsChar;
+	uchar *image_uchar;
 
 	void setImage(Mat sI);
 	Mat getImage();
@@ -21,8 +22,11 @@ public:
 	void checkSubjectKeypoints();
 
 	void setDescriptors(Mat ds);
+	void MatToBytes();
+	cv::Mat BytesToMat();
 	Mat getDescriptors();
 	char *getDescriptorsAsText();
+	char * getDescriptorsAsChar();
 	void clearDescAsChar();
 	
 	void cleanUp();

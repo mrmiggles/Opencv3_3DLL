@@ -46,6 +46,27 @@ char * Subject::getDescriptorsAsText()
 	return descAsChar;
 }
 
+
+ void Subject::MatToBytes()
+{
+	// = *pimage_uchar;
+	//class data members of ints
+	int image_rows = descriptorsA.rows;
+	int image_cols = descriptorsA.cols;
+	int image_type = descriptorsA.type();
+
+	int image_size = descriptorsA.total() * descriptorsA.elemSize();
+	image_uchar = new uchar[image_size];
+	std::memcpy(image_uchar, descriptorsA.data, image_size * sizeof(uchar));
+	//return 1;
+}
+
+cv::Mat Subject::BytesToMat()
+{
+	cv::Mat img(descriptorsA.rows, descriptorsA.cols, descriptorsA.type(), image_uchar, cv::Mat::AUTO_STEP);
+	return img;
+}
+
 Mat Subject::getDescriptors()
 {
 	return descriptorsA;

@@ -10,6 +10,12 @@ extern "C" {
 	Subject s; //Image subject class
 	MatcherW matcher; //Opencv Matcher Wrapper class just to hide a few functions
 
+	DECLDIR bool setSubjectFromString(char *mat) {
+
+		cout << mat << endl;
+		return true;
+	}
+
 	DECLDIR bool setSubjectImage(void *buf, int h1, int w1) {
 		if (!buf) {
 			cout << "Initial Buffers were null" << endl;
@@ -67,34 +73,10 @@ extern "C" {
 		return s.getDescriptorsAsText();
 	}
 
-
-
-	DECLDIR void printDesc() {
-		//cout << "saving file: qazwsxedc.bin" << endl;
-		//saveMat("qazwsxedc.bin", s.getDescriptors()); //write to binary file
-
-		//cout << "saving to: mat.xml" << endl;
-		//saveMatToYML("mat.xml", s.getDescriptors());
-
-		//ofstream outfile("C:\\output\\new.txt", ios::out | std::ofstream::binary);
-		//std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
-		//std::cout.rdbuf(outfile.rdbuf()); //redirect std::cout to new.txt!	
-
-		String text = "";
-		String com = "[";
-		
-		Mat m = s.getDescriptors();
-		for (int i = 0; i < m.rows; i++) {
-			for (int j = 0; j<m.cols; j++) {
-				text += com + to_string(m.at<float>(i, j));
-				com = ",";
-			}
-		}
-
-		text += "]";
-		cout << text.c_str() << endl;
+	DECLDIR uchar* getDesc(){
+		s.MatToBytes();
+		return s.image_uchar;
 	}
-
 
 	DECLDIR void printSubjectDescriptors() {
 
