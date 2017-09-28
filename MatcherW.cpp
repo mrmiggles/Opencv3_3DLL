@@ -117,21 +117,20 @@ bool MatcherW::checkGoodMatchWHomography(Mat subjectImage, vector<KeyPoint> kpts
 	Mat img_matches;
 	drawMatches(subjectImage, kpts1, sceneImage, kpts2, good_matches, img_matches, Scalar::all(-1), Scalar::all(-1), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
 
-	/*
+	
 	//-- Localize the object
-	std::vector<Point2f> obj;
-	std::vector<Point2f> scene;
+	std::vector<Point2d> obj;
+	std::vector<Point2d> scene;
+	
 
 	for (int i = 0; i < good_matches.size(); i++)
 	{
-	//-- Get the keypoints from the good matches
-	obj.push_back(kpts1[good_matches[i].queryIdx].pt);
-	scene.push_back(kpts2[good_matches[i].trainIdx].pt);
+		//-- Get the keypoints from the good matches
+		obj.push_back(kpts1[good_matches[i].queryIdx].pt);
+		scene.push_back(kpts2[good_matches[i].trainIdx].pt);
 	}
 
-
-
-	Mat H = findHomography(obj, scene, CV_RANSAC);
+	Mat H = findHomography(obj, scene, RANSAC);
 
 	//-- Get the corners from the image_1 ( the object to be "detected" )
 	std::vector<Point2f> obj_corners(4);
@@ -147,7 +146,7 @@ bool MatcherW::checkGoodMatchWHomography(Mat subjectImage, vector<KeyPoint> kpts
 	line(img_matches, scene_corners[1] + Point2f(subjectImage.cols, 0), scene_corners[2] + Point2f(subjectImage.cols, 0), Scalar(0, 255, 0), 4);
 	line(img_matches, scene_corners[2] + Point2f(subjectImage.cols, 0), scene_corners[3] + Point2f(subjectImage.cols, 0), Scalar(0, 255, 0), 4);
 	line(img_matches, scene_corners[3] + Point2f(subjectImage.cols, 0), scene_corners[0] + Point2f(subjectImage.cols, 0), Scalar(0, 255, 0), 4);
-	*/
+	
 	//-- Show detected matches
 	resize(img_matches, img_matches, Size(img_matches.cols / 2, img_matches.rows / 2));
 	namedWindow("Good Matches & Object detection", CV_WINDOW_AUTOSIZE);

@@ -3,3 +3,6 @@ x64/Release/opencv_world330.dll
 x64/Release/OpenCV3_3DLL.dll
 x64/Release/OpenCV3_3DLL.pch
 x64/Release/OpenCV3_3DLL.pch
+
+OpenCV3_3DLL.VC.db
+Release/OpenCV3_3DLL.pch

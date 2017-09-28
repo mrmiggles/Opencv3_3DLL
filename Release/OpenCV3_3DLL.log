@@ -1,15 +1,24 @@
 ﻿  stdafx.cpp
   dllmain.cpp
   MatcherW.cpp
+MatcherW.cpp(126): warning C4018: '<': signed/unsigned mismatch
+MatcherW.cpp(145): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(146): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(147): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(148): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+MatcherW.cpp(177): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 MatcherW.cpp(178): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 MatcherW.cpp(179): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 MatcherW.cpp(180): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-MatcherW.cpp(181): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   OpenCV3_3DLL.cpp
+OpenCV3_3DLL.cpp(18): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Subject.cpp
+Subject.cpp(64): warning C4018: '<': signed/unsigned mismatch
+Subject.cpp(58): warning C4102: 'std': unreferenced label
      Creating library C:\Users\299490\Documents\Git\Opencv3_3DLL\Release\OpenCV3_3DLL.lib and object C:\Users\299490\Documents\Git\Opencv3_3DLL\Release\OpenCV3_3DLL.exp
   Generating code
-  All 635 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+c:\users\299490\documents\git\opencv3_3dll\matcherw.cpp(45): warning C4715: 'MatcherW::checkIfGoodMatch': not all control paths return a value
+  All 801 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   OpenCV3_3DLL.vcxproj -> C:\Users\299490\Documents\Git\Opencv3_3DLL\Release\OpenCV3_3DLL.dll
   OpenCV3_3DLL.vcxproj -> C:\Users\299490\Documents\Git\Opencv3_3DLL\Release\OpenCV3_3DLL.pdb (Full PDB)

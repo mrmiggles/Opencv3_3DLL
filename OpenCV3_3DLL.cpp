@@ -10,13 +10,44 @@ extern "C" {
 	Subject s; //Image subject class
 	MatcherW matcher; //Opencv Matcher Wrapper class just to hide a few functions
 
-	DECLDIR bool setSubjectFromString(char *mat) {
+	DECLDIR bool addToSubjectDescriptorVector(char *mat) {
 
-		cout << mat << endl;
+		//cout << "adding " << mat << " to vector" << endl;
+		//cout << atof(mat) << endl;
+		if (mat == "nan") mat = "0.0";
+		s.tmpMatVector.push_back(atof(mat));
 		return true;
 	}
 
+	DECLDIR void addToSubjectKeyPoints(float x, float y) {
+		s.addToKeyPoints(x, y);
+	}
+
+	DECLDIR void setSubjectDescriptorsAfterVectorFill(int rows, int cols, int type) {
+		cout << "setting from vector " << endl;
+		s.tmpMatVector.shrink_to_fit();
+		s.descriptorsA = Mat(rows, cols, type, s.tmpMatVector.data());
+		//s.descriptorsB = Mat(rows, cols, type, s.tmpMatVector.data());
+	}
+
+
+	DECLDIR void compareVectorValsToMat() {
+		//ofstream outfile("C:\\output\\comparison.txt", ios::out | std::ofstream::binary);
+		//std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
+		//std::cout.rdbuf(outfile.rdbuf()); //redirect std::cout to new.txt! 
+
+		cout << "desc A size: " << s.descriptorsA.size << endl;
+		cout << "desc B size: " << s.descriptorsB.size << endl;
+
+		for (int i = 0; i < s.descriptorsA.rows; i++) {
+			for (int j = 0; j<s.descriptorsA.cols; j++) {
+				cout << s.descriptorsA.at<float>(i, j) << " " << s.descriptorsB.at<float>(i, j) << endl;
+			}
+		}
+	}
+
 	DECLDIR bool setSubjectImage(void *buf, int h1, int w1) {
+
 		if (!buf) {
 			cout << "Initial Buffers were null" << endl;
 			return false;
@@ -69,7 +100,6 @@ extern "C" {
 		
 	*/
 	DECLDIR char* getSubjectDescriptors() {
-		
 		return s.getDescriptorsAsText();
 	}
 
@@ -79,9 +109,17 @@ extern "C" {
 	}
 
 	DECLDIR void printSubjectDescriptors() {
+		cout << "Descriptors Type: " << s.getDescriptors().type() << endl;
+		cout << "Descriptor Rows: " << s.getDescriptors().rows << endl;
+		cout << "Descriptor Cols: " << s.getDescriptors().cols << endl;
 
-		cout << "subject descriptors from DLL:" << endl;
-		cout << s.getDescriptors() << endl;
+		//saveMatToYML("mat.yml", s.getDescriptors());
+
+		//s.printDescriptors();
+	}
+
+	DECLDIR void getSubjectKeypoints() {
+		s.getKeypointsAsText();
 	}
 
 	DECLDIR bool setDetector(int type) {
@@ -96,6 +134,7 @@ extern "C" {
 			det = "ORB";
 			break;
 		case 3: //"SURF";
+			detector = SurfFeatureDetector::create(400); //minHessian
 			det = "SURF";
 			break;
 		case 4: //"SIFT";
@@ -155,8 +194,8 @@ extern "C" {
 
 		vector<cv::KeyPoint> keypointsB;
 		Mat descriptorsB;
+		
 		detector->detectAndCompute(sceneImage, noArray(), keypointsB, descriptorsB);
-
 		checkMatcher();
 
 
@@ -173,13 +212,13 @@ extern "C" {
 				descriptorsB.convertTo(descriptorsB, CV_32F);
 			}
 		}
+		
+		matcher.findknnMatches(s.getDescriptors(), descriptorsB);
+		bool ev = matcher.checkIfGoodMatch();
+		matcher.paintGoodMatches(s.getImage(), sceneImage, s.getKeypoints(), keypointsB);
 
-		//matcher.findknnMatches(s.getDescriptors(), descriptorsB);
-		//bool ev = matcher.checkIfGoodMatch();
-		//matcher.paintGoodMatches(s.getImage(), sceneImage, s.getKeypoints(), keypointsB);
-
-		matcher.findMatches(s.getDescriptors(), descriptorsB);
-		bool ev = matcher.checkGoodMatchWHomography(s.getImage(), s.getKeypoints(), sceneImage, keypointsB, s.getDescriptors());
+		//matcher.findMatches(s.getDescriptors(), descriptorsB);
+		//bool ev = matcher.checkGoodMatchWHomography(s.getImage(), s.getKeypoints(), sceneImage, keypointsB, s.getDescriptors());
 
 		descriptorsB.release();
 		keypointsB.clear();

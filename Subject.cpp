@@ -29,21 +29,55 @@ void Subject::clearDescAsChar()
 
 char * Subject::getDescriptorsAsText()
 {
-	std::string com = "[";
+	cout << "rows: " << descriptorsA.rows << endl;
+	cout << "cols: " << descriptorsA.cols << endl;
+	cout << "type: " << descriptorsA.type() << endl;
+	std::string com = "";// "[";
 	std::string text = "";
 	
+
 	for (int i = 0; i < descriptorsA.rows; i++) {
 		for (int j = 0; j<descriptorsA.cols; j++) {
-			text += com + std::to_string(descriptorsA.at<float>(i, j));
+			//text += com + std::to_string(descriptorsA.at<float>(i, j)); //losing precision
+			std::ostringstream out;
+			out << descriptorsA.at<float>(i, j);
+			text += com + out.str();
+			out.clear();
 			com = ",";
 		}
 	}
 
-	text += "]";
+	//text += "]";
 	descAsChar = new char[text.size() + 1];
 	std::copy(text.begin(), text.end(), descAsChar);
 	descAsChar[text.size()] = '\0';
 	return descAsChar;
+}
+
+char * Subject::getKeypointsAsText() {
+	std:string text = "";
+	//cout << keypointsA.data() << endl;
+	
+	ofstream outfile("C:\\output\\subjectKeypoints.txt", ios::out | std::ofstream::binary);
+	std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
+	std::cout.rdbuf(outfile.rdbuf()); //redirect std::cout to new.txt!
+	for (int i = 0; i < keypointsA.size(); i++) {
+		cout << std::to_string(keypointsA.at(i).pt.x) << " " << std::to_string(keypointsA.at(i).pt.y) << ",";
+	}
+	
+	cout << "keypoints size: " << keypointsA.size() << endl;
+	
+
+	return NULL;
+}
+
+void Subject::addToKeyPoints(float x, float y) {
+	cv::KeyPoint kp;
+	cv::Point2f p;
+	p.x = x;
+	p.y = y;
+	kp.pt = p;
+	keypointsA.push_back(kp);
 }
 
 
@@ -75,6 +109,10 @@ Mat Subject::getDescriptors()
 vector<cv::KeyPoint> Subject::getKeypoints()
 {
 	return keypointsA;
+}
+
+void Subject::printDescriptors() {
+	cout << descriptorsA << endl;
 }
 
 void Subject::checkSubjectKeypoints() {
